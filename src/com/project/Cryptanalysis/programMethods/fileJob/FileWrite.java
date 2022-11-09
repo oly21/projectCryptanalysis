@@ -1,10 +1,10 @@
-package com.project.Cryptanalysis.programMethods;
+package com.project.Cryptanalysis.programMethods.fileJob;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-public class fileWrite {
-    public static String fileWrite1(String resultString, Path originalFile, String nameMethod ) throws IOException {
+public class FileWrite {
+    public static String fileWriteMethod(String resultString, Path originalFile, String nameMethod ) throws IOException {
 
 
 
@@ -27,7 +27,7 @@ public class fileWrite {
         Files.writeString(fileResult1, resultString);
         return  resultString;
     }
-    public static String fileWrite1(String resultString, Path originalFile, String nameMethod,  String key) throws IOException {
+    public static String fileWriteMethodKey(String resultString, Path originalFile, String nameMethod,  String key) throws IOException {
 
 
 
