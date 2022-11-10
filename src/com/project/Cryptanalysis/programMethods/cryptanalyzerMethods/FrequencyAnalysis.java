@@ -1,23 +1,23 @@
 package com.project.Cryptanalysis.programMethods.cryptanalyzerMethods;
 
 import com.project.Cryptanalysis.programMethods.FindMostFrequentCharacter;
-import com.project.Cryptanalysis.programMethods.Сonverter;
+import com.project.Cryptanalysis.programMethods.Converter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class FrequencyAnalysis {
     String StringDecrypt;
-    String[] paragraphForСheck;
+    String[] paragraphForCheck;
     char[] StringDencryptArray;
-    FindMostFrequentCharacter findMostFrequentCharacter = new FindMostFrequentCharacter();
-    RestartDecodingАlgorithm restartDecodingАlgorithm = new RestartDecodingАlgorithm();
-    Сonverter сonverter = new Сonverter();
+    private final FindMostFrequentCharacter findMostFrequentCharacter = new FindMostFrequentCharacter();
+    private final RestartDecodingAlgorithm restartDecodingAlgorithm = new RestartDecodingAlgorithm();
+    private final Converter converter = new Converter();
 
-    boolean chekIf = false;
-    boolean chekIf2 = false;
 
-    public ArrayList<String> frequencyAnalysisString(String stringAnalysis, String StringDecrypt, Path fileResult) throws IOException {
+
+
+    public ArrayList<String> frequencyAnalysisString(String stringAnalysis, String StringDecrypt) throws IOException {
 
         ArrayList<String> resultStringKey;
         int key;
@@ -27,22 +27,22 @@ public class FrequencyAnalysis {
         index = findMostFrequentCharacter.findMostFrequentCharacterMethodInt(stringAnalysis);
 
        key =  countKey(index);
-        resultStringKey = restartDecodingАlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
+        resultStringKey = restartDecodingAlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
         this.StringDecrypt = StringDecrypt;
 
-        while (checkingWorkfrequencyAnalysisStringMethod(this.StringDencryptArray, this.StringDecrypt, key, index, resultStringKey) == true) {
-            if (chekIf == false && count<=4) {
+        while (checkingWorkfrequencyAnalysisStringMethod(this.StringDencryptArray, this.StringDecrypt)) {
+            if (count<=4) {
                 count++;
-                key = сonverter.converterKeyMethod(count, index);
-                resultStringKey = restartDecodingАlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
-            } else if (count>4 &&  count<8) {
+                key = converter.converterKeyMethod(count, index);
+                resultStringKey = restartDecodingAlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
+            } else if (count<8) {
                 count++;
-                key = сonverter.converterKeySpaceMethod(count, index);
+                key = converter.converterKeySpaceMethod(count, index);
 
-                resultStringKey = restartDecodingАlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
+                resultStringKey = restartDecodingAlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
             } else if (count>8) {
                 key++;
-                resultStringKey = restartDecodingАlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
+                resultStringKey = restartDecodingAlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
             }
 
 
@@ -51,26 +51,26 @@ public class FrequencyAnalysis {
     }
 
 
-    public boolean checkingWorkfrequencyAnalysisStringMethod(char[] StringDencryptArray, String StringDecrypt, int key, int index, ArrayList<String> resultStringKey) throws IOException {
+    private boolean checkingWorkfrequencyAnalysisStringMethod(char[] StringDencryptArray, String StringDecrypt) throws IOException {
         boolean keyFound = true;
 
         while (keyFound) {
             for (int i = 0; i < 2; i++) {
 
                 if (i < StringDencryptArray.length - 1) {
-                    chekIf = false;
+
                     if (StringDecrypt.length() > 6) {
                         if (!StringDecrypt.contains(" ")) {
                             return true;
                         }
                     }
                     if (!StringDecrypt.contains(" ")) {
-                       chekIf = true;
+
                         return true;
 
-                    } else if (i < paragraphForСheck.length) {
-                        if (findMostFrequentCharacter.findMostFrequentCharacterMethod(paragraphForСheck[i])) {
-                         chekIf2 = true;
+                    } else if (i < paragraphForCheck.length) {
+                        if (findMostFrequentCharacter.findMostFrequentCharacterMethod(paragraphForCheck[i])) {
+
                             return true;
 
                         }
@@ -86,7 +86,7 @@ public class FrequencyAnalysis {
 
 
     }
-    public int  countKey(int index){
+    private int  countKey(int index){
 
         if (index - 26 < 1) {
         index = 31 - index;

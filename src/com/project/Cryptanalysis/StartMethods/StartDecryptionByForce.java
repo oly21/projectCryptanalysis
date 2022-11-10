@@ -4,16 +4,17 @@ import com.project.Cryptanalysis.programMethods.fileJob.FileWrite;
 import com.project.Cryptanalysis.programMethods.fileJob.ReadingFile;
 import com.project.Cryptanalysis.programMethods.*;
 import com.project.Cryptanalysis.programMethods.cryptanalyzerMethods.DecryptionByForce;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class StartDecryptionByForce {
-    DecryptionByForce decryptionByForce = new DecryptionByForce();
+    private DecryptionByForce decryptionByForce = new DecryptionByForce();
 
-    PrintList printList = new PrintList();
+    private PrintList printList = new PrintList();
 
-    UserDecodingScore userDecodingScore = new UserDecodingScore();
+    private UserDecodingScore userDecodingScore = new UserDecodingScore();
 
     public void startDecryptionByForceMethod(Path fileDecrypt) throws IOException {
         ArrayList<String> resultStringKeyFromMethod;
@@ -22,12 +23,14 @@ public class StartDecryptionByForce {
         resultStringKeyFromMethod = decryptionByForce.DecryptionByForceString(ReadingFile.readingFileMethod(fileDecrypt), key);
         printList.PrintListMethod(resultStringKeyFromMethod);
         resultStringKeyFromMethod = this.checkingWorkStartByForceMethod(resultStringKeyFromMethod, fileDecrypt);
-        FileWrite.fileWriteMethodKey(resultStringKeyFromMethod.get(0), fileDecrypt, messageBox.NAME_METHOD_BRUTEFORCE, resultStringKeyFromMethod.get(1));
+        FileWrite.fileWriteMethodKey(resultStringKeyFromMethod.get(0), fileDecrypt, messageBox.NAME_METHOD_BRUTEFORCE,
+                resultStringKeyFromMethod.get(1));
 
     }
 
 
-    public ArrayList<String> checkingWorkStartByForceMethod(ArrayList<String> resultStringKeyFromMethod, Path fileDecrypt) throws IOException {
+    private ArrayList<String> checkingWorkStartByForceMethod(ArrayList<String> resultStringKeyFromMethod,
+                                                             Path fileDecrypt) throws IOException {
 
         while (userDecodingScore.GetUserDecodingScore() != true) {
             int key = Integer.parseInt(resultStringKeyFromMethod.get(1));

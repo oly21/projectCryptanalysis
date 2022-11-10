@@ -8,41 +8,41 @@ import java.util.ArrayList;
 public class DecryptionByForce {
 
     String StringDecrypt;
-    String[] paragraphForСheck;
-    DecodingАlgorithm decodingАlgorithm = new DecodingАlgorithm();
-    RestartDecodingАlgorithm restartDecodingАlgorithm = new RestartDecodingАlgorithm();
-    final FindMostFrequentCharacter findMostFrequentCharacter = new FindMostFrequentCharacter();
-    boolean keyFound = true;
+    String[] paragraphForCheck;
+    private final DecodingAlgorithm decodingAlgorithm = new DecodingAlgorithm();
+    private final RestartDecodingAlgorithm restartDecodingAlgorithm = new RestartDecodingAlgorithm();
+    private final FindMostFrequentCharacter findMostFrequentCharacter = new FindMostFrequentCharacter();
+    private boolean keyFound = true;
     char[] StringDencryptArray;
     public ArrayList<String> DecryptionByForceString(String StringDecrypt, int key) throws IOException {
         this.StringDecrypt = StringDecrypt;
-        ArrayList<String> resultStringKey = new ArrayList<String>();
+        ArrayList<String> resultStringKey = new ArrayList<>();
 
 
-        this.StringDecrypt = decodingАlgorithm.decoDecodingАlgorithmMethod(StringDecrypt, key);
-        StringDencryptArray = decodingАlgorithm.getStringDencryptArray();
-        paragraphForСheck =   this.StringDecrypt.split("[\\r\\n]+");
+        this.StringDecrypt = decodingAlgorithm.decoDecodingAlgorithmMethod(StringDecrypt, key);
+        StringDencryptArray = decodingAlgorithm.getStringDencryptArray();
+        paragraphForCheck =   this.StringDecrypt.split("[\\r\\n]+");
 
-        while (checkingWorkByForceMethod(this.StringDencryptArray, this.StringDecrypt, key) != false) {
+        while (checkingWorkByForceMethod(this.StringDencryptArray, this.StringDecrypt, key)) {
 
             key++;
-            resultStringKey = restartDecodingАlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
+            resultStringKey = restartDecodingAlgorithm.RestartDecodingMethod(StringDecrypt, key,this);
 
         }
         return resultStringKey;
 
     }
 
-    public boolean checkingWorkByForceMethod(char[] StringDencryptArray, String StringDecrypt, int key) throws IOException {
+    private boolean checkingWorkByForceMethod(char[] StringDencryptArray, String StringDecrypt, int key) throws IOException {
 
         while (keyFound) {
             for (int i = 0; i < 2; i++) {
 
                 if (i < StringDencryptArray.length - 1) {
 
-                    if (StringDecrypt.length() > 6 && key < 30 && i < paragraphForСheck.length) {
-                        if (!StringDecrypt.contains(" ") || (!paragraphForСheck[i].contains(" ")
-                                || (findMostFrequentCharacter.findMostFrequentCharacterMethod(paragraphForСheck[i]) == true))) {
+                    if (StringDecrypt.length() > 6 && key < 30 && i < paragraphForCheck.length) {
+                        if (!StringDecrypt.contains(" ") || (!paragraphForCheck[i].contains(" ")
+                                || (findMostFrequentCharacter.findMostFrequentCharacterMethod(paragraphForCheck[i])))) {
 
                             return true;
 

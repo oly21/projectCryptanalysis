@@ -4,10 +4,10 @@ import com.project.Cryptanalysis.programMethods.GetAlphabet;
 import java.io.IOException;
 
 
-public class DecodingАlgorithm {
-    char[] StringDencryptArray;
+public class DecodingAlgorithm {
+   private char[] StringDencryptArray;
 
-    public String decoDecodingАlgorithmMethod(String StringDecrypt, int key) throws IOException {
+    public String decoDecodingAlgorithmMethod(String StringDecrypt, int key) throws IOException {
 
         String resultString;
         GetAlphabet getAlphabet = new GetAlphabet();

@@ -9,7 +9,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
 
         StartProgram startProgram = new StartProgram();
-        startProgram.StartProgramMethod(args[0], args[1], args[02]);
+        startProgram.StartProgramMethod(args[0], args[1], args[2]);
     }
 }
 

@@ -12,9 +12,7 @@ public class StartAllStartMethods {
             StartDecoding startDecoding = new StartDecoding();
             startDecoding.startDecodingMethod(key, file);
         } else if (taskNumber == 3) {
-            StartDecryptionByForce startDecryptionByForce = new StartDecryptionByForce();
-
-            startDecryptionByForce.startDecryptionByForceMethod(file);
+            new StartDecryptionByForce().startDecryptionByForceMethod(file);
         } else if (taskNumber == 4) {
             StartFrequencyAnalysis startFrequencyAnalysis = new StartFrequencyAnalysis();
             startFrequencyAnalysis.StartFrequencyAnalysisMethod(file);

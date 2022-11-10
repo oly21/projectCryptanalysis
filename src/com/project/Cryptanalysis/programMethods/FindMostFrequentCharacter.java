@@ -6,9 +6,7 @@ import java.io.IOException;
 
 public class FindMostFrequentCharacter {
     private int count1;
-
-
-    GetAlphabet getAlphabet = new GetAlphabet();
+    private final GetAlphabet getAlphabet = new GetAlphabet();
 
     public int findMostFrequentCharacterMethodInt(String stringAnalysis) throws IOException {
 
@@ -25,7 +23,7 @@ public class FindMostFrequentCharacter {
     }
 
 
-    public FindMostFrequentCharacter[] findMostFrequentCharacterFillListObjectsMethod(FindMostFrequentCharacter[] findMostFrequentCharacterArray) throws IOException {
+    private FindMostFrequentCharacter[] findMostFrequentCharacterFillListObjectsMethod(FindMostFrequentCharacter[] findMostFrequentCharacterArray)  {
         for (int i = 0; i < findMostFrequentCharacterArray.length; i++) {
             findMostFrequentCharacterArray[i] = new FindMostFrequentCharacter();
         }
@@ -33,14 +31,13 @@ public class FindMostFrequentCharacter {
     }
 
 
-    public int[] countSameCharacters(FindMostFrequentCharacter[] findMostFrequentCharacterArray, String stringAnalysis) throws IOException {
+    private int[] countSameCharacters(FindMostFrequentCharacter[] findMostFrequentCharacterArray, String stringAnalysis) throws IOException {
         char[] StringDencryptArray = stringAnalysis.toCharArray();
         char[] alphabet = getAlphabet.GettingAlphabet();
         int[] numberCharactersInt = new int[alphabet.length];
-        for (int i = 0; i < StringDencryptArray.length; i++) {
+        for (char c : StringDencryptArray) {
             for (int j = 0; j < alphabet.length; j++) {
-
-                if (StringDencryptArray[i] == alphabet[j]) {
+                if (c == alphabet[j]) {
                     findMostFrequentCharacterArray[j].count1++;
                     numberCharactersInt[j] = findMostFrequentCharacterArray[j].count1;
                 }
@@ -50,7 +47,7 @@ public class FindMostFrequentCharacter {
     }
 
 
-    public int findMaxtCharacter(int[] numberCharactersInt) throws IOException {
+    private int findMaxtCharacter(int[] numberCharactersInt)  {
         int index = 0;
         for (int i = 0; i < numberCharactersInt.length; i++) {
             if (numberCharactersInt[i] > numberCharactersInt[index]) {

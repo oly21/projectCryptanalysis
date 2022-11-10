@@ -1,15 +1,15 @@
 package com.project.Cryptanalysis.StartMethods;
 
 import com.project.Cryptanalysis.programMethods.messageBox;
-import com.project.Cryptanalysis.programMethods.Сonverter;
+import com.project.Cryptanalysis.programMethods.Converter;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 
 public class StartProgram {
-    StartAllStartMethods startAllStartMethods = new StartAllStartMethods();
-    Сonverter сonverter = new Сonverter();
+    private final StartAllStartMethods startAllStartMethods = new StartAllStartMethods();
+    private final Converter converter = new Converter();
 
     public void StartProgramMethod(String nameTask, String StringDecrypt, String keyString) throws IOException {
 
@@ -20,7 +20,7 @@ public class StartProgram {
             System.out.println(messageBox.KEY_LIMIT);
         } else {
 
-            int taskNumber = сonverter.converternameTaskMethod(nameTask);
+            int taskNumber = converter.converternameTaskMethod(nameTask);
             startAllStartMethods.StartingAllStartMethods(taskNumber, key, file);
 
         }

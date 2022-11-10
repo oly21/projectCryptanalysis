@@ -3,18 +3,17 @@ package com.project.Cryptanalysis.programMethods.cryptanalyzerMethods;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RestartDecodingАlgorithm {
+public class RestartDecodingAlgorithm {
     public ArrayList<String> RestartDecodingMethod(String StringDecrypt, int key,Object  object) throws IOException {
-        DecodingАlgorithm decodingАlgorithm = new DecodingАlgorithm();
+        DecodingAlgorithm decodingAlgorithm = new DecodingAlgorithm();
         ArrayList<String> resultStringKey = new ArrayList<>();
         String resultString;
 
-        resultString = decodingАlgorithm.decoDecodingАlgorithmMethod(StringDecrypt, key);
-        if (resultString != null && object instanceof DecryptionByForce  ) {
-            DecryptionByForce decryptionByForce = (DecryptionByForce)object;
+        resultString = decodingAlgorithm.decoDecodingAlgorithmMethod(StringDecrypt, key);
+        if (resultString != null && object instanceof DecryptionByForce decryptionByForce) {
 
             decryptionByForce.StringDecrypt = resultString;
-            decryptionByForce.paragraphForСheck = resultString.split("[\\r\\n]+");
+            decryptionByForce.paragraphForCheck = resultString.split("[\\r\\n]+");
             decryptionByForce.StringDencryptArray = resultString.toCharArray();
             resultStringKey.add(0, resultString);
             resultStringKey.add(1, Integer.toString(key));
@@ -25,7 +24,7 @@ public class RestartDecodingАlgorithm {
 
 
             frequencyAnalysis.StringDecrypt = resultString;
-            frequencyAnalysis.paragraphForСheck = resultString.split("[\\r\\n]+");
+            frequencyAnalysis.paragraphForCheck = resultString.split("[\\r\\n]+");
             frequencyAnalysis.StringDencryptArray = resultString.toCharArray();
 
             resultStringKey.add(0, resultString);
