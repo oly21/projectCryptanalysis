@@ -24,8 +24,7 @@ public class FrequencyAnalysisDecoder {
         StringDecrypt = resultString;
         paragraphForCheck = resultString.split("[\\r\\n]+");
         StringDencryptArray = resultString.toCharArray();
-        resultStringKey.add(0, resultString);
-        resultStringKey.add(1, Integer.toString(key));
+
 
 
         boolean keyFound = true;
@@ -40,8 +39,7 @@ public class FrequencyAnalysisDecoder {
                     StringDecrypt = resultString;
                     paragraphForCheck = resultString.split("[\\r\\n]+");
                     StringDencryptArray = resultString.toCharArray();
-                    resultStringKey.add(0, resultString);
-                    resultStringKey.add(1, Integer.toString(key));
+
 
                 } else if (count <= 8 && i < paragraphForCheck.length &&
                         (finderMostFrequentCharacter.findMostFrequentCharacter(paragraphForCheck[i]))) {
@@ -51,20 +49,20 @@ public class FrequencyAnalysisDecoder {
                     StringDecrypt = resultString;
                     paragraphForCheck = resultString.split("[\\r\\n]+");
                     StringDencryptArray = resultString.toCharArray();
-                    resultStringKey.add(0, resultString);
-                    resultStringKey.add(1, Integer.toString(key));
+
                 } else if (count > 8) {
                     key++;
                     resultString = decoder.decode(StringDecrypt, key);
                     StringDecrypt = resultString;
                     paragraphForCheck = resultString.split("[\\r\\n]+");
                     StringDencryptArray = resultString.toCharArray();
-                    resultStringKey.add(0, resultString);
-                    resultStringKey.add(1, Integer.toString(key));
+
                 }
             }
             keyFound = false;
         }
+        resultStringKey.add(0, resultString);
+        resultStringKey.add(1, Integer.toString(key));
         return resultStringKey;
     }
 
