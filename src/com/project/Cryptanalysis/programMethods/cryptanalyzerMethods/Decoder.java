@@ -1,19 +1,22 @@
 package com.project.Cryptanalysis.programMethods.cryptanalyzerMethods;
 
-import com.project.Cryptanalysis.programMethods.GetAlphabet;
+
+import com.project.Cryptanalysis.programMethods.Alphabet;
+
 import java.io.IOException;
 
 
-public class DecodingAlgorithm {
-   private char[] StringDencryptArray;
+public class Decoder {
 
-    public String decoDecodingAlgorithmMethod(String StringDecrypt, int key) throws IOException {
+    private char[] StringDencryptArray;
+
+    public String decode(String StringDecrypt, int key) throws IOException {
 
         String resultString;
-        GetAlphabet getAlphabet = new GetAlphabet();
-        char[] alphabet = getAlphabet.GettingAlphabet();
+        char[] alphabet = new Alphabet().GettingAlphabet();
 
-
+        StringDencryptArray = StringDecrypt.toCharArray();
+        char[] StringDencryptArray = new char[StringDecrypt.length()];
         StringDencryptArray = StringDecrypt.toCharArray();
         for (int i = 0; i < StringDecrypt.length(); i++) {
             for (int j = 0; j < alphabet.length; j++) {
@@ -26,10 +29,13 @@ public class DecodingAlgorithm {
                         StringDencryptArray[i] = alphabet[k - key + j + 1];
                         j = alphabet.length;
                     }
+
+
                 }
             }
 
         }
+
 
         resultString = new String(StringDencryptArray);
 
@@ -37,6 +43,8 @@ public class DecodingAlgorithm {
     }
 
     public char[] getStringDencryptArray() {
+
         return StringDencryptArray;
     }
 }
+

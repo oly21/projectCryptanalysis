@@ -3,8 +3,8 @@ package com.project.Cryptanalysis.programMethods.fileJob;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-public class FileWrite {
-    public static String fileWriteMethod(String resultString, Path originalFile, String nameMethod ) throws IOException {
+public class WriterFile {
+    public static String WriteFile(String resultString, Path originalFile, String nameMethod ) throws IOException {
 
 
 
@@ -27,7 +27,7 @@ public class FileWrite {
         Files.writeString(fileResult1, resultString);
         return  resultString;
     }
-    public static String fileWriteMethodKey(String resultString, Path originalFile, String nameMethod,  String key) throws IOException {
+    public static String WriteFileKey(String resultString, Path originalFile, String nameMethod,  String key) throws IOException {
 
 
 

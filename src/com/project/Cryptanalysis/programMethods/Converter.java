@@ -1,9 +1,8 @@
 package com.project.Cryptanalysis.programMethods;
 
 
-
 public class Converter {
-    public int converternameTaskMethod(String nameTask) {
+    public int convertnameTask(String nameTask) {
         int taskNumber = switch (nameTask) {
             case "encode" -> 1;
             case "decode" -> 2;
@@ -14,7 +13,7 @@ public class Converter {
         return taskNumber;
     }
 
-    public int converterKeyMethod(int count, int index)  {
+    public int convertKey(int count, int index) {
         int indexE = 4;
         int key = switch (count) {
             case 1 -> index - indexE;
@@ -25,7 +24,7 @@ public class Converter {
         return key;
     }
 
-    public int converterKeySpaceMethod(int count, int index)  {
+    public int convertKeySpace(int count, int index) {
         int key = switch (count) {
             case 5 -> index - 26;
             case 6 -> index - 19;

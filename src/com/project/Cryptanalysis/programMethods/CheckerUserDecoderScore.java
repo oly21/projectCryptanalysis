@@ -3,12 +3,10 @@ package com.project.Cryptanalysis.programMethods;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class UserDecodingScore {
+public class CheckerUserDecoderScore {
     public boolean GetUserDecodingScore() throws IOException {
 
         Scanner scanner = new Scanner(System.in);
-
-
         System.out.println(messageBox.PROGRAM_EVALUATION_MESSAGE);
         int userEvaluation = scanner.nextInt();
         if (userEvaluation == 1) {
