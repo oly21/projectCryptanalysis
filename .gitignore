@@ -6,4 +6,4 @@ src/com/project/Cryptanalysis/texencryptionencryption
 .idea
 src/META-INF
 .DS_Store
-META-INF/MANIFEST.MF
+.MANIFEST.MF
