@@ -6,4 +6,4 @@ src/com/project/Cryptanalysis/texencryptionencryption
 .idea
 src/META-INF
 .DS_Store
-/Users/olgashabaykina/IdeaProjects/projectCryptanalysis/src/META-INF
+out/production/projectCryptanalysis/META-INF/MANIFEST.MF
