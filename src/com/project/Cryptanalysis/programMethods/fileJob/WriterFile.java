@@ -5,47 +5,63 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class WriterFile {
-    public static String WriteFile(String resultString, Path originalFile, String nameMethod) throws IOException {
-
+    public static void WriteFile(String resultString, Path originalFile, String nameMethod) throws IOException {
 
         String fileName = originalFile.getFileName().toString();
+        String filePathWithoutFileName = originalFile.getParent().toString();
+        String fileNameResult;
 
-
-        String fileResultAbsolutePath = originalFile.toString();
-        String fileNameResult = fileResultAbsolutePath + nameMethod;
-
-        Path fileResult1 = Path.of(fileNameResult);
-
-        if (Files.exists(fileResult1)) {
-
-            Files.delete(fileResult1);
-            Files.createFile(fileResult1);
+        if (fileName.contains("(")) {
+            fileName = fileName.replaceAll("(.+?)\\([a-zA-Z]*\\)\\.(.+?)", "$1(" + nameMethod + ").$2");
+            fileNameResult = filePathWithoutFileName + "/" + fileName;
         } else {
-            Files.createFile(fileResult1);
+
+            fileName = fileName.replaceAll("(.+?)\\.(.+?)", "$1(" + nameMethod + ").$2");
+            fileNameResult = filePathWithoutFileName + "/" + fileName;
         }
-        Files.writeString(fileResult1, resultString);
-        return resultString;
+
+        Path fileResultPath = Path.of(fileNameResult);
+
+        if (Files.exists(fileResultPath)) {
+            Files.delete(fileResultPath);
+            Files.createFile(fileResultPath);
+        } else {
+            Files.createFile(fileResultPath);
+        }
+        Files.writeString(fileResultPath, resultString);
     }
 
-    public static String WriteFileKey(String resultString, Path originalFile, String nameMethod, String key) throws IOException {
 
+    public static void WriteFileKey(String resultString, Path originalFile, String nameMethod, String key) throws IOException {
 
         String fileName = originalFile.getFileName().toString();
-        String fileResultAbsolutePath = originalFile.toString();
-        String fileNameResult = fileResultAbsolutePath + nameMethod + key;
+        String filePathWithoutFileName = originalFile.getParent().toString();
+        String fileNameResult;
 
-        Path fileResult1 = Path.of(fileNameResult);
+        if (fileName.contains("(")) {
+            fileName = fileName.replaceAll("(.+?)\\([a-zA-Z]*\\)\\.(.+?)", "$1(" + nameMethod + key + ").$2");
+            fileNameResult = filePathWithoutFileName + "/" + fileName;
 
-
-        if (Files.exists(fileResult1)) {
-
-            Files.delete(fileResult1);
-            Files.createFile(fileResult1);
         } else {
-            Files.createFile(fileResult1);
+
+            fileName = fileName.replaceAll("(.+?)\\.(.+?)", "$1(" + nameMethod + key + ").$2");
+
+            fileNameResult = filePathWithoutFileName + "/" + fileName;
+
         }
-        Files.writeString(fileResult1, resultString);
-        return resultString;
+
+        Path fileResultPath = Path.of(fileNameResult);
+
+
+        if (Files.exists(fileResultPath)) {
+
+            Files.delete(fileResultPath);
+            Files.createFile(fileResultPath);
+        } else {
+            Files.createFile(fileResultPath);
+        }
+        Files.writeString(fileResultPath, resultString);
+
     }
 
 }

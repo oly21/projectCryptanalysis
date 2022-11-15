@@ -7,8 +7,5 @@ public class PrinterArrayList {
         for (Object o : resultStringKeyFromMethod) {
             System.out.println(o);
         }
-
-
     }
-
 }

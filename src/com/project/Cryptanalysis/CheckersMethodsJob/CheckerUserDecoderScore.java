@@ -1,10 +1,12 @@
-package com.project.Cryptanalysis.programMethods;
+package com.project.Cryptanalysis.CheckersMethodsJob;
+
+import com.project.Cryptanalysis.programMethods.messageBox;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class CheckerUserDecoderScore {
-    public boolean GetUserDecodingScore() throws IOException {
+    public boolean GetUserDecodingScore()  {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(messageBox.PROGRAM_EVALUATION_MESSAGE);
@@ -16,8 +18,6 @@ public class CheckerUserDecoderScore {
         } else {
             System.out.println(messageBox.PROGRAM_CONTINUES_JOB);
             return false;
-
-
         }
     }
 }

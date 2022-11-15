@@ -2,49 +2,100 @@ package com.project.Cryptanalysis.programMethods.cryptanalyzerMethods;
 
 
 import com.project.Cryptanalysis.programMethods.Alphabet;
-
-import java.io.IOException;
+import com.project.Cryptanalysis.programMethods.messageBox;
+import java.util.List;
 
 
 public class Decoder {
 
-    private char[] StringDencryptArray;
 
-    public String decode(String StringDecrypt, int key) throws IOException {
+    private List<Character> alphabet;
 
-        String resultString;
-        char[] alphabet = new Alphabet().GettingAlphabet();
-
-        StringDencryptArray = StringDecrypt.toCharArray();
-        char[] StringDencryptArray = new char[StringDecrypt.length()];
-        StringDencryptArray = StringDecrypt.toCharArray();
-        for (int i = 0; i < StringDecrypt.length(); i++) {
-            for (int j = 0; j < alphabet.length; j++) {
-                if (StringDencryptArray[i] == alphabet[j]) {
-                    if (j >= key && key < 30) {
-                        StringDencryptArray[i] = alphabet[j - key];
-                        j = alphabet.length;
-                    } else if (j < key && key < 30) {
-                        int k = alphabet.length - 1;
-                        StringDencryptArray[i] = alphabet[k - key + j + 1];
-                        j = alphabet.length;
-                    }
+    private final String commandNameB = messageBox.COMMAND_NAME_BEGIN;
+    private final String commandNameE = messageBox.COMMAND_NAME_END;
 
 
-                }
-            }
+    public String decode(String encodedString, int key) {
 
+
+        if (encodedString.contains("т") || encodedString.contains("и") || encodedString.contains("л")) {
+            alphabet = Alphabet.ALPHABET_RU;
+        } else {
+            alphabet = Alphabet.ALPHABET_EN;
         }
 
+        char[] encodedStringArray;
+        String decodedString;
+        int indexEncodedStrArray;
+        encodedStringArray = encodedString.toCharArray();
+        char symbolOriginalArray;
+        int indexAlphabet;
 
-        resultString = new String(StringDencryptArray);
 
-        return resultString;
+        for (indexEncodedStrArray = 0; indexEncodedStrArray < encodedStringArray.length; indexEncodedStrArray++) {
+            symbolOriginalArray = encodedStringArray[indexEncodedStrArray];
+            if (alphabet.contains(symbolOriginalArray)) {
+                indexAlphabet = alphabet.indexOf(symbolOriginalArray);
+            } else {
+                continue;
+            }
+
+            //Number of characters remaining at the beginning  of the alphabet
+            int numberSymbolsToBeginAlphabet = indexAlphabet;
+            if (numberSymbolsToBeginAlphabet >= key) {
+                changeSymbolInEncodedStrArray(
+                        indexEncodedStrArray,
+                        encodedStringArray,
+                        indexAlphabet,
+                        commandNameB,
+                        key);
+
+            } else if (numberSymbolsToBeginAlphabet < key) {
+
+
+                changeSymbolInEncodedStrArray(
+                        indexEncodedStrArray,
+                        encodedStringArray,
+                        indexAlphabet,
+                        commandNameE,
+                        key);
+            }
+        }
+
+        decodedString = new String(encodedStringArray);
+
+        return decodedString;
     }
 
-    public char[] getStringDencryptArray() {
+    public char getDisplacedSymbolAlphabetBegin(int indexAlphabet, int key) {
 
-        return StringDencryptArray;
+        char displacedSymbolAlphabetBegin = alphabet.get(indexAlphabet - key);
+
+        return displacedSymbolAlphabetBegin;
+    }
+
+    public char getDisplacedSymbolAlphabetEnd(int indexAlphabet, int key) {
+
+        int numberSymbolsToBeginAlphabet = indexAlphabet;
+        //A number indicating the number of remaining Symbols offsets in the alphabet
+        int RemainingNumberOfOffsetsInAlphabet = (key - numberSymbolsToBeginAlphabet);
+        char displaceSymbolAlphabetEnd = alphabet.get((alphabet.size() - 1) - RemainingNumberOfOffsetsInAlphabet);
+
+        return displaceSymbolAlphabetEnd;
+    }
+
+    public void changeSymbolInEncodedStrArray(
+            int indexEncodedStrArray,
+            char[] encodedStringArray,
+            int indexAlphabet,
+            String commandName,
+            int key) {
+
+        if (commandName.equals(commandNameB)) {
+            encodedStringArray[indexEncodedStrArray] = getDisplacedSymbolAlphabetBegin(indexAlphabet, key);
+        } else {
+            encodedStringArray[indexEncodedStrArray] = getDisplacedSymbolAlphabetEnd(indexAlphabet, key);
+        }
     }
 }
 

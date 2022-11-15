@@ -1,37 +1,54 @@
 package com.project.Cryptanalysis.programMethods;
 
 
+import java.util.List;
+
 public class Converter {
-    public int convertnameTask(String nameTask) {
+    public static int convertNameTask(String nameTask) {
         int taskNumber = switch (nameTask) {
-            case "encode" -> 1;
-            case "decode" -> 2;
-            case "bruteForce" -> 3;
-            case "frequencyAnalysis" -> 4;
+            case messageBox.NAME_METHOD_ENCODE -> 1;
+            case messageBox.NAME_METHOD_DECODE -> 2;
+            case messageBox.NAME_METHOD_BRUTEFORCE -> 3;
+            case messageBox.NAME_METHOD_FREQUENCYANALYSISI -> 4;
             default -> 1;
         };
         return taskNumber;
+
     }
 
-    public int convertKey(int count, int index) {
-        int indexE = 4;
-        int key = switch (count) {
-            case 1 -> index - indexE;
-            case 2 -> index - 19;
-            case 3 -> index;
-            default -> 4;
+    public static int GetIndexMostFrequentCharacterInEnglish(int count, List<Character> alphabet) {
+
+        int indexSpase;
+        int indexE;
+        int indexA;
+        int indexRuIorEnT;
+        int indexO;
+        if (alphabet.contains('т') || alphabet.contains('и') || alphabet.contains('л')) {
+
+            indexSpase = alphabet.indexOf(messageBox.SYMBOL_SPACE);
+            indexE = alphabet.indexOf(messageBox.LETTER_RU_E);
+            indexA = alphabet.indexOf(messageBox.LETTER_RU_A);
+            indexRuIorEnT = alphabet.indexOf(messageBox.LETTER_RU_I);
+            indexO = alphabet.indexOf(messageBox.LETTER_RU_O);
+        } else {
+
+            indexSpase = alphabet.indexOf(messageBox.SYMBOL_SPACE);
+            indexE = alphabet.indexOf(messageBox.LETTER_E);
+            indexA = alphabet.indexOf(messageBox.LETTER_A);
+            indexRuIorEnT = alphabet.indexOf(messageBox.LETTER_T);
+            indexO = alphabet.indexOf(messageBox.LETTER_O);
+        }
+
+        int taskNumber = switch (count) {
+            case 1 -> indexSpase;
+            case 2 -> indexE;
+            case 3 -> indexRuIorEnT;
+            case 4 -> indexA;
+            default -> indexO;
+
         };
-        return key;
-    }
 
-    public int convertKeySpace(int count, int index) {
-        int key = switch (count) {
-            case 5 -> index - 26;
-            case 6 -> index - 19;
-            case 7 -> index;
-            default -> 7;
-        };
-        return key;
-    }
 
+        return taskNumber;
+    }
 }
