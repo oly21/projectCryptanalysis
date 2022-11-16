@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class CheckerUserDecoderScore {
-    public boolean GetUserDecodingScore()  {
+     boolean GetUserDecodingScore()  {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(messageBox.PROGRAM_EVALUATION_MESSAGE);

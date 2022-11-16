@@ -64,14 +64,14 @@ public class Encoder {
     }
 
 
-    public char getDisplacedSymbolAlphabetRight(int indexAlphabet, int key) {
+    private char getDisplacedSymbolAlphabetRight(int indexAlphabet, int key) {
 
         char displacedSymbolAlphabetRight = alphabet.get(indexAlphabet + key);
 
         return displacedSymbolAlphabetRight;
     }
 
-    public char getDisplacedSymbolAlphabetBegin(int indexAlphabet, int key) {
+    private char getDisplacedSymbolAlphabetBegin(int indexAlphabet, int key) {
 
         int numberSymbolsToEndAlphabet = (alphabet.size() - 1) - indexAlphabet;
         char displaceSymbolAlphabetBegin = alphabet.get(key - numberSymbolsToEndAlphabet);
@@ -80,7 +80,7 @@ public class Encoder {
     }
 
 
-    public void changeSymbolInOriginalStrArray(int indexOriginalStrArray, char[] originalStringArray,
+    private void changeSymbolInOriginalStrArray(int indexOriginalStrArray, char[] originalStringArray,
                                                int indexAlphabet, String commandName, int key) {
 
         if (commandName.equals(commandNameR)) {

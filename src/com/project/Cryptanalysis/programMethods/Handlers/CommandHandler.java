@@ -21,7 +21,7 @@ public class CommandHandler {
     int key;
     private Path file;
 
-    public void argumentHandle(String commandName, String filePath, String keyString) throws IOException {
+    private void argumentHandle(String commandName, String filePath, String keyString) throws IOException {
 
         if (!commandName.equals(messageBox.NAME_METHOD_ENCODE)
                 && !commandName.equals(messageBox.NAME_METHOD_DECODE)

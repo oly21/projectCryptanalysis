@@ -67,14 +67,14 @@ public class Decoder {
         return decodedString;
     }
 
-    public char getDisplacedSymbolAlphabetBegin(int indexAlphabet, int key) {
+    private char getDisplacedSymbolAlphabetBegin(int indexAlphabet, int key) {
 
         char displacedSymbolAlphabetBegin = alphabet.get(indexAlphabet - key);
 
         return displacedSymbolAlphabetBegin;
     }
 
-    public char getDisplacedSymbolAlphabetEnd(int indexAlphabet, int key) {
+    private char getDisplacedSymbolAlphabetEnd(int indexAlphabet, int key) {
 
         int numberSymbolsToBeginAlphabet = indexAlphabet;
         //A number indicating the number of remaining Symbols offsets in the alphabet
@@ -84,7 +84,7 @@ public class Decoder {
         return displaceSymbolAlphabetEnd;
     }
 
-    public void changeSymbolInEncodedStrArray(
+    private void changeSymbolInEncodedStrArray(
             int indexEncodedStrArray,
             char[] encodedStringArray,
             int indexAlphabet,

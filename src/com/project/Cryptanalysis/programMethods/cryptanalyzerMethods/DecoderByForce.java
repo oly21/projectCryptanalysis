@@ -37,7 +37,7 @@ public class DecoderByForce {
         return decodedStringKAndKey;
     }
 
-    public void checkCorrectnessDecodeJob() throws IOException {
+    private void checkCorrectnessDecodeJob() throws IOException {
         //According to statistics, the average English word has no more than 6 letters
         boolean DecodedStrContainMultipleWords = decodedString.length() > 6;
         boolean keyLessAllowLimit = key < 30;
@@ -58,7 +58,7 @@ public class DecoderByForce {
         }
     }
 
-    public void findSpacesDecodedStr() throws IOException {
+    private void findSpacesDecodedStr() throws IOException {
 
         if (!decodedString.contains(" ")) {
             restartDecode();
@@ -66,7 +66,7 @@ public class DecoderByForce {
         }
     }
 
-    public void findSpacesParagraphsDecodedStr() throws IOException {
+    private void findSpacesParagraphsDecodedStr() throws IOException {
         int paragraphCheckLimit = Math.min((paragraphsDecodedStrArray.length - 1), 5);
         paragraphDecodedStr = paragraphsDecodedStrArray[0];
         for (indexParagraphDecodedStr = 0; indexParagraphDecodedStr < paragraphCheckLimit; indexParagraphDecodedStr++) {
@@ -79,7 +79,7 @@ public class DecoderByForce {
         }
     }
 
-    public void restartDecode() {
+    private void restartDecode() {
 
         key++;
         decodedString = decoder.decode(encodedString, key);
@@ -88,7 +88,7 @@ public class DecoderByForce {
 
     }
 
-    public void StartDecode(int key, String encodedString) {
+    private void StartDecode(int key, String encodedString) {
         decodedString = decoder.decode(encodedString, key);
         paragraphsDecodedStrArray = decodedString.split("[\\r\\n]+");
         decodedStringArray = decodedString.toCharArray();

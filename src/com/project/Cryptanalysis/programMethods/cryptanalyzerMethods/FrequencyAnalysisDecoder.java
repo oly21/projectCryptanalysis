@@ -60,7 +60,7 @@ public class FrequencyAnalysisDecoder {
         return decodedStringKAndKey;
     }
 
-    public boolean checkCorrectnessDecodeJob() throws IOException {
+    private boolean checkCorrectnessDecodeJob() throws IOException {
         //According to statistics, the average English word has no more than 6 letters
         boolean DecodedStrContainMultipleWords = decodedString.length() > 6;
         boolean keyLessAllowLimit = key < 30;
@@ -82,12 +82,12 @@ public class FrequencyAnalysisDecoder {
         return findSpacesDecodedStr && findSpacesParagraphsDecodedStr;
     }
 
-    public boolean findSpacesDecodedStr()  {
+    private boolean findSpacesDecodedStr()  {
 
         return decodedString.contains(" ");
     }
 
-    public boolean findSpacesParagraphsDecodedStr() {
+    private boolean findSpacesParagraphsDecodedStr() {
 
         int paragraphCheckLimit = Math.min(paragraphsDecodedStrArray.length, 5);
         for (indexParagraphDecodedStr = 0; indexParagraphDecodedStr < paragraphCheckLimit; indexParagraphDecodedStr++) {
@@ -100,7 +100,7 @@ public class FrequencyAnalysisDecoder {
         return true;
     }
 
-    public void restartDecode(int count, int MostFrequentCharacterDecodedStrIndex) {
+    private void restartDecode(int count, int MostFrequentCharacterDecodedStrIndex) {
         count++;
 
 
@@ -113,14 +113,14 @@ public class FrequencyAnalysisDecoder {
         decodedStringArray = decodedString.toCharArray();
     }
 
-    public void startDecodeByForce() throws IOException {
+    private void startDecodeByForce() throws IOException {
 
         decodedStringKAndKey = decoderByForce.decodeByForce(decodedString, 1);
 
     }
 
 
-    public void StartDecode(int key, String encodedString) {
+    private void StartDecode(int key, String encodedString) {
         decodedString = decoder.decode(encodedString, key);
         paragraphsDecodedStrArray = decodedString.split("[\\r\\n]+");
         decodedStringArray = decodedString.toCharArray();
